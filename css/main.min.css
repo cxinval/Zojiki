@@ -282,15 +282,13 @@ template {
     padding-bottom: 88px
 }
 
-.header-wrap {
+.header-nav {
+    position: relative;
     background-image: url(../img/nav-bg.png);
     background-repeat: no-repeat;
-    background-size: contain
-}
-
-.header-nav {
+    background-size: 100% 100%;
     padding: 14px 100px;
-    margin-bottom: 64px
+    margin-bottom: 64px;
 }
 
 .header-link {
@@ -647,7 +645,94 @@ template {
     margin-top: 25px;
     margin-left: 20px;
 }
+/* Мобильное Меню */
+.header-mobi{
+    display: none;
+}
+/* Гамбургер иконка */
+.menu-btn {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	z-index:2;
+	overflow: hidden;
+}
 
+.menu-btn span {
+	width: 30px;
+	height: 2px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	transition: all 0.5s;
+}
+
+.menu-btn span:nth-of-type(2) {
+	top: calc(50% - 5px);
+}
+.menu-btn span:nth-of-type(3) {
+	top: calc(50% + 5px);
+}
+
+/* Меняем гамбургер иконку, когда меню открыто */
+.menu-btn.active span:nth-of-type(1) {
+  display: none;
+}
+.menu-btn.active span:nth-of-type(2) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(45deg);  
+}
+.menu-btn.active span:nth-of-type(3) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(-45deg); 
+}
+
+/* Меню, которое будет появляться */
+.header-nav{
+    z-index: 10;
+}
+.menu {
+	position: absolute;
+
+	top: 13%;
+	left: 50%;
+    transform: translateX(-50%);
+	width: 96%;
+	visibility: hidden;
+	padding: 15px;
+    background: #03262C;
+	transition: all 0.6s ease; 
+    
+}
+
+.menu.active {
+    top: 33%;
+    visibility: visible;
+    z-index: 0;
+}
+.menu nav a{
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    padding-left: 50px;
+    font-size: 20px;
+    padding: 5px 15px;
+    z-index: 10;
+}
+.menu .active::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #0f7404, #5cb917);
+    z-index: -1;
+
+    
+}
 
 /* Медиа */
 
@@ -661,9 +746,14 @@ template {
     .info-r {
         padding: 54px 0 0 70px;
     }
+    
 }
 
-
+@media only screen and (max-width: 1140px) {
+    .header-link:not(:last-child) {
+        margin-right: 10px;
+    }
+}
 /* Medium Devices, Desktops */
 
 @media only screen and (max-width: 992px) {
@@ -709,19 +799,60 @@ template {
     .header-link {
         font-size: 13px;
     }
+    .header-links{
+        display: none !important;
+    }
+    .header-mobi{
+        display: block;
+    }
+    .header-nav{
+        background-image: none !important;
+        background: #03262C;
+        z-index: 10 !important;
+        position: relative;
+    }
+    .menu{
+        margin: 0 auto;
+        z-index: -1;
+    }
+    .footer-l h2{
+        font-size: 35px;
+    }
+    .footer-l p{
+        font-size: 15px;
+    }
+    .footer-c a, .footer-r a{
+        font-size: 20px;
+    }
+    .footer-links{
+        max-width: 238px;
+    }
+    .footer > .container{
+        justify-content: space-between;
+    }
+    .footer-logo span{
+        font-size: 9px;
+    }
+
+    
+}
+
+/* Small Devices, Tablets  */
+
+@media only screen and (max-width: 768px) {
+    .footer > .container{
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center !important;
+    }
 }
 
 
-/* Small Devices, Tablets */
-
-@media only screen and (max-width: 768px) {}
-
-
 /* Extra Small Devices, Phones */
-
-@media only screen and (max-width: 480px) {}
+/* 
+@media only screen and (max-width: 480px) {} */
 
 
 /* Custom, iPhone Retina */
-
-@media only screen and (max-width: 320px) {}
+/* 
+@media only screen and (max-width: 320px) */
